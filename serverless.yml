@@ -1,0 +1,22 @@
+service: serverless-go
+frameworkVersion: '3'
+provider: 
+  name: aws
+  runtime: go1.x
+  region: us-east-2
+  stage: ${opt:stage, 'dev'}
+
+functions:
+  api:
+    handler: bin/main
+    events:
+      - http:
+          path: /{proxy+}  # Use a wildcard for the path
+          method: ANY
+          cors: true
+
+package:
+  patterns:
+    - bin/**
+    - go.mod
+    - go.sum
