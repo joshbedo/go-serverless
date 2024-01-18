@@ -5,6 +5,8 @@ provider:
   runtime: go1.x
   region: us-east-2
   stage: ${opt:stage, 'dev'}
+  environment:
+    stage: ${opt:stage, 'dev'}
 
 functions:
   api:

@@ -162,13 +162,18 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-go/prod/1705543061084-2024-01-18T01:57:41.084Z/serverless-go.zip"
+          "S3Key": "serverless/serverless-go/prod/1705546394849-2024-01-18T02:53:14.849Z/serverless-go.zip"
         },
         "Handler": "bin/main",
         "Runtime": "go1.x",
         "FunctionName": "serverless-go-prod-api",
         "MemorySize": 1024,
         "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "stage": "prod"
+          }
+        },
         "Role": {
           "Fn::GetAtt": [
             "IamRoleLambdaExecution",
@@ -180,14 +185,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionmciRZAFOERZamprXjdqcy6Z1vcij6sn51cgdAmQuTQ": {
+    "ApiLambdaVersionihupVq6n9bHuGKpWzUZkdpH55p1gv4VDUEVJ1Gq4eQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "MuQkvVHsmSAZImE8MrV150ooc20RzvR9DTBsa/Sza9k="
+        "CodeSha256": "Ren3j3twW2TM3NUwgsalR8WipJqvdFAIo9fyqNI3sh8="
       }
     },
     "ApiGatewayRestApi": {
@@ -308,7 +313,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1705543060232": {
+    "ApiGatewayDeployment1705546393944": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -371,7 +376,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionmciRZAFOERZamprXjdqcy6Z1vcij6sn51cgdAmQuTQ"
+        "Ref": "ApiLambdaVersionihupVq6n9bHuGKpWzUZkdpH55p1gv4VDUEVJ1Gq4eQ"
       },
       "Export": {
         "Name": "sls-serverless-go-prod-ApiLambdaFunctionQualifiedArn"
