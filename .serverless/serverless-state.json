@@ -10,7 +10,6 @@
       "region": "us-east-2",
       "stage": "prod",
       "environment": {
-        "DSN": "ysc4ja7ymki8ge7isa0x:pscale_pw_PL8axrBhVKVqt0wD3g29XOgObqO97OxmAPomP19vTk4@tcp(aws.connect.psdb.cloud)/testing?tls=true&interpolateParams=true",
         "stage": "prod"
       },
       "versionFunctions": true,
@@ -178,7 +177,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-go/prod/1705545232300-2024-01-18T02:33:52.300Z/serverless-go.zip"
+                "S3Key": "serverless/serverless-go/prod/1705546394849-2024-01-18T02:53:14.849Z/serverless-go.zip"
               },
               "Handler": "bin/main",
               "Runtime": "go1.x",
@@ -187,7 +186,6 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "DSN": "ysc4ja7ymki8ge7isa0x:pscale_pw_PL8axrBhVKVqt0wD3g29XOgObqO97OxmAPomP19vTk4@tcp(aws.connect.psdb.cloud)/testing?tls=true&interpolateParams=true",
                   "stage": "prod"
                 }
               },
@@ -202,14 +200,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionZ3UMwxq9zS8rp0LhC1WcFbu12FctHbvVRP2oHf7FUyI": {
+          "ApiLambdaVersionihupVq6n9bHuGKpWzUZkdpH55p1gv4VDUEVJ1Gq4eQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "fgXen/efotDOjyRhI5ZX6eahqlkyyihvHRdNOQThGXQ="
+              "CodeSha256": "Ren3j3twW2TM3NUwgsalR8WipJqvdFAIo9fyqNI3sh8="
             }
           },
           "ApiGatewayRestApi": {
@@ -330,7 +328,7 @@
               "ApiLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1705545230974": {
+          "ApiGatewayDeployment1705546393944": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -393,7 +391,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionZ3UMwxq9zS8rp0LhC1WcFbu12FctHbvVRP2oHf7FUyI"
+              "Ref": "ApiLambdaVersionihupVq6n9bHuGKpWzUZkdpH55p1gv4VDUEVJ1Gq4eQ"
             },
             "Export": {
               "Name": "sls-serverless-go-prod-ApiLambdaFunctionQualifiedArn"
@@ -547,7 +545,7 @@
         "timeout": 6,
         "runtime": "go1.x",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionZ3UMwxq9zS8rp0LhC1WcFbu12FctHbvVRP2oHf7FUyI"
+        "versionLogicalId": "ApiLambdaVersionihupVq6n9bHuGKpWzUZkdpH55p1gv4VDUEVJ1Gq4eQ"
       }
     },
     "configValidationMode": "warn",
@@ -569,7 +567,7 @@
         ],
         "artifactsS3KeyDirname": "serverless/serverless-go/prod/code-artifacts",
         "artifact": "/Users/joshbedo/Desktop/projects/serverless-go/.serverless/serverless-go.zip",
-        "artifactDirectoryName": "serverless/serverless-go/prod/1705545232300-2024-01-18T02:33:52.300Z"
+        "artifactDirectoryName": "serverless/serverless-go/prod/1705546394849-2024-01-18T02:53:14.849Z"
       }
     },
     "layers": {},
@@ -577,7 +575,7 @@
     "artifact": "/Users/joshbedo/Desktop/projects/serverless-go/.serverless/serverless-go.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-go/prod/1705545232300-2024-01-18T02:33:52.300Z",
+    "artifactDirectoryName": "serverless/serverless-go/prod/1705546394849-2024-01-18T02:53:14.849Z",
     "artifact": "serverless-go.zip"
   }
 }

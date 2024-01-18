@@ -9,7 +9,10 @@ func ListAllUsers(c *gin.Context) {
 	var users []Models.User
 	err := Models.GetAllUsers(&users)
 	if err != nil {
-		c.AbortWithStatus(404)
+		// return message no users found
+		c.JSON(404, gin.H{
+			"message": "No users found",
+		})
 	} else {
 		c.JSON(200, users)
 	}
