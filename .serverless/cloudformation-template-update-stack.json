@@ -162,13 +162,19 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-go/prod/1705543061084-2024-01-18T01:57:41.084Z/serverless-go.zip"
+          "S3Key": "serverless/serverless-go/prod/1705545232300-2024-01-18T02:33:52.300Z/serverless-go.zip"
         },
         "Handler": "bin/main",
         "Runtime": "go1.x",
         "FunctionName": "serverless-go-prod-api",
         "MemorySize": 1024,
         "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "DSN": "ysc4ja7ymki8ge7isa0x:pscale_pw_PL8axrBhVKVqt0wD3g29XOgObqO97OxmAPomP19vTk4@tcp(aws.connect.psdb.cloud)/testing?tls=true&interpolateParams=true",
+            "stage": "prod"
+          }
+        },
         "Role": {
           "Fn::GetAtt": [
             "IamRoleLambdaExecution",
@@ -180,14 +186,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionmciRZAFOERZamprXjdqcy6Z1vcij6sn51cgdAmQuTQ": {
+    "ApiLambdaVersionZ3UMwxq9zS8rp0LhC1WcFbu12FctHbvVRP2oHf7FUyI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "MuQkvVHsmSAZImE8MrV150ooc20RzvR9DTBsa/Sza9k="
+        "CodeSha256": "fgXen/efotDOjyRhI5ZX6eahqlkyyihvHRdNOQThGXQ="
       }
     },
     "ApiGatewayRestApi": {
@@ -308,7 +314,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1705543060232": {
+    "ApiGatewayDeployment1705545230974": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -371,7 +377,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionmciRZAFOERZamprXjdqcy6Z1vcij6sn51cgdAmQuTQ"
+        "Ref": "ApiLambdaVersionZ3UMwxq9zS8rp0LhC1WcFbu12FctHbvVRP2oHf7FUyI"
       },
       "Export": {
         "Name": "sls-serverless-go-prod-ApiLambdaFunctionQualifiedArn"

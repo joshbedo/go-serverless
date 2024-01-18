@@ -3,41 +3,53 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
-	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"github.com/joshbedo/serverless-go/Config"
+	"github.com/joshbedo/serverless-go/Routers"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var ginLambda *ginadapter.GinLambda
+var err error
 
 func init() {
 	fmt.Printf("Gin cold start\n")
 
-	r := gin.Default()
+	// load env vars
+	err = godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello, World!",
+	// connect to db
+	dsn := fmt.Sprintf("%s&parseTime=True", os.Getenv("DSN"))
+
+	Config.DB, err = gorm.Open(
+		mysql.Open(dsn),
+		&gorm.Config{
+			DisableForeignKeyConstraintWhenMigrating: true,
 		})
-	})
 
-	r.GET("/ping/:name", func(c *gin.Context) {
-		name := c.Param("name")
+	if err != nil {
+		panic("failed to connect database")
+	}
 
-		c.JSON(200, gin.H{
-			"message": fmt.Sprintf("Hello, %s!", name),
-		})
-	})
+	// setup routers
+	r := Routers.SetupRouters()
 
-	r.GET("/hello/:name", func(c *gin.Context) {
-		name := c.Param("name")
-
-		c.String(200, "Hello, %s!", name)
-	})
-
-	ginLambda = ginadapter.New(r)
+	// if prod use ginLambda adapter otherwise just r.Run()
+	if os.Getenv("stage") == "prod" {
+		ginLambda = ginadapter.New(r)
+	} else {
+		r.Run(":3000")
+	}
 }
 
 func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
